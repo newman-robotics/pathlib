@@ -7,11 +7,3 @@ A simple pathing library that enables an event-driven and customisable approach.
 ## Coming in the future (read: checklist)
 
 See TODO.md.
-
-## License
-
-GNU GPLv3
-
-See LICENSE.md.
-
-(In brief: Don't use this library unless the software that you're writing is open-source and licensed under the GPLv3 or a compatible license.)
