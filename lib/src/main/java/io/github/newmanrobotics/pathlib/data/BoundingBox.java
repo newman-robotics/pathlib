@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package pathlib.data;
+package io.github.newmanrobotics.pathlib.data;
 
 import com.google.common.annotations.VisibleForTesting;
 

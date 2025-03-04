@@ -16,16 +16,20 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package pathlib.impl;
+package io.github.newmanrobotics.pathlib.impl;
 
-import pathlib.Path;
-import pathlib.PathBuilder;
-import pathlib.World;
-import pathlib.data.PathBuilderFlags;
-import pathlib.data.Position;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.github.newmanrobotics.pathlib.Path;
+import io.github.newmanrobotics.pathlib.PathBuilder;
+import io.github.newmanrobotics.pathlib.World;
+import io.github.newmanrobotics.pathlib.data.PathBuilderFlags;
+import io.github.newmanrobotics.pathlib.data.Position;
 
 public class InternalPathBuilder implements PathBuilder {
     private PathBuilderFlags flags;
+    private List<Position> targets = new ArrayList<>();
     private World world;
 
     public InternalPathBuilder() {
@@ -42,8 +46,7 @@ public class InternalPathBuilder implements PathBuilder {
 
     @Override
     public void addTarget(Position target) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addTarget'");
+        this.targets.add(target);
     }
 
     @Override

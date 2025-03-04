@@ -1,5 +1,5 @@
 /*
-InternalPath.java
+Position.java
 Copyright (C) 2025 Owen Kelley
 
 This program is free software: you can redistribute it and/or modify
@@ -16,16 +16,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package pathlib.impl;
+package io.github.newmanrobotics.pathlib.data;
 
-import pathlib.Path;
-import pathlib.interfaces.Pather;
-
-public class InternalPath implements Path {
-    private Pather target;
-
-    @Override
-    public void connect(Pather target) {
-        this.target = target;
-    }
-}
+/**
+ * Stores a position.
+ * @param x The X-coordinate of this {@code Position}. Must be Cartesian.
+ * @param y The Y-coordinate of this {@code Position}. Must be Cartesian.
+ * @param heading The heading of this {@code Position}. Must be in degrees and increase towards clockwise.
+ */
+public record Position(double x, double y, double heading) {}

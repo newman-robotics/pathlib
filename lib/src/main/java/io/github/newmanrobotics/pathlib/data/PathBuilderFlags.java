@@ -1,5 +1,5 @@
 /*
-Path.java
+PathBuilderFlags.java
 Copyright (C) 2025 Owen Kelley
 
 This program is free software: you can redistribute it and/or modify
@@ -16,14 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package pathlib;
+package io.github.newmanrobotics.pathlib.data;
 
-import pathlib.interfaces.Pather;
-
-public interface Path {
-    /**
-     * Instructs this {@code Path} to send commands to the target.
-     * @param target The target. Will be ordered to move by this object.
-     */
-    public void connect(Pather target);
+public record PathBuilderFlags() {
+    public static final PathBuilderFlags DEFAULT = new PathBuilderFlags();
 }

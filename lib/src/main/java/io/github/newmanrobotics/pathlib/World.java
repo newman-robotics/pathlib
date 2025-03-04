@@ -16,9 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package pathlib;
+package io.github.newmanrobotics.pathlib;
 
-import pathlib.data.BoundingBox;
+import io.github.newmanrobotics.pathlib.data.BoundingBox;
 
 public interface World {
     /**

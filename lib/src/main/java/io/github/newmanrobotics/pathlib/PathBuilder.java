@@ -16,11 +16,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package pathlib;
+package io.github.newmanrobotics.pathlib;
 
-import pathlib.data.PathBuilderFlags;
-import pathlib.data.Position;
-import pathlib.impl.InternalPathBuilder;
+import io.github.newmanrobotics.pathlib.data.PathBuilderFlags;
+import io.github.newmanrobotics.pathlib.data.Position;
+import io.github.newmanrobotics.pathlib.impl.InternalPathBuilder;
 
 public interface PathBuilder {
     public static PathBuilder create() {

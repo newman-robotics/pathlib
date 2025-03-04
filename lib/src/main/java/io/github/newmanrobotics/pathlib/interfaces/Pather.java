@@ -16,9 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package pathlib.interfaces;
+package io.github.newmanrobotics.pathlib.interfaces;
 
-import pathlib.data.Position;
+import io.github.newmanrobotics.pathlib.data.Position;
 
 /**
  * A {@code Pather} is some object which is capable of pathing using PathLib.

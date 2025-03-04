@@ -1,5 +1,5 @@
 /*
-Position.java
+Path.java
 Copyright (C) 2025 Owen Kelley
 
 This program is free software: you can redistribute it and/or modify
@@ -16,12 +16,21 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package pathlib.data;
+package io.github.newmanrobotics.pathlib;
 
-/**
- * Stores a position.
- * @param x The X-coordinate of this {@code Position}. Must be Cartesian.
- * @param y The Y-coordinate of this {@code Position}. Must be Cartesian.
- * @param heading The heading of this {@code Position}. Must be in degrees and increase towards clockwise.
- */
-public record Position(double x, double y, double heading) {}
+import io.github.newmanrobotics.pathlib.interfaces.Logger;
+import io.github.newmanrobotics.pathlib.interfaces.Pather;
+
+public interface Path {
+    /**
+     * Instructs this {@code Path} to send commands to the target.
+     * @param target The target. Will be ordered to move by this object.
+     */
+    public void connect(Pather target);
+
+    /**
+     * Sets the {@code Logger} of this {@code Path} to the target.
+     * @param logger The logger.
+     */
+    public void setLogger(Logger logger);
+}

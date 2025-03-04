@@ -1,5 +1,5 @@
 /*
-PathBuilderFlags.java
+InternalPath.java
 Copyright (C) 2025 Owen Kelley
 
 This program is free software: you can redistribute it and/or modify
@@ -16,8 +16,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package pathlib.data;
+package io.github.newmanrobotics.pathlib.impl;
 
-public record PathBuilderFlags() {
-    public static final PathBuilderFlags DEFAULT = new PathBuilderFlags();
+import io.github.newmanrobotics.pathlib.Path;
+import io.github.newmanrobotics.pathlib.interfaces.Logger;
+import io.github.newmanrobotics.pathlib.interfaces.Pather;
+
+public class InternalPath implements Path {
+    private Pather target;
+    private Logger logger;
+
+    @Override
+    public void connect(Pather target) {
+        this.target = target;
+    }
+
+    @Override
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
 }
