@@ -12,3 +12,6 @@ lib/build
 # Ignore binaries
 app/bin
 lib/bin
+
+#Ignore .DS_Stores (why wasn't this present at the initial commit?)
+*/.DS_Store
