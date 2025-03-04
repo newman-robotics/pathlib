@@ -23,9 +23,19 @@ import pathlib.data.Position;
 import pathlib.impl.InternalPathBuilder;
 
 public interface PathBuilder {
+    public static PathBuilder create() {
+        return new InternalPathBuilder();
+    }
+
     public static PathBuilder create(PathBuilderFlags flags) {
         return new InternalPathBuilder(flags);
     }
+
+    /**
+     * This path will attempt to avoid all bounding boxes within the given world.
+     * @param world The world to use.
+     */
+    public void setWorld(World world);
 
     /**
      * Adds the given target position.

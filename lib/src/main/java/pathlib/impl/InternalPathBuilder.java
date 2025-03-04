@@ -20,14 +20,24 @@ package pathlib.impl;
 
 import pathlib.Path;
 import pathlib.PathBuilder;
+import pathlib.World;
 import pathlib.data.PathBuilderFlags;
 import pathlib.data.Position;
 
 public class InternalPathBuilder implements PathBuilder {
-    PathBuilderFlags flags;
+    private PathBuilderFlags flags;
+    private World world;
+
+    public InternalPathBuilder() {
+        this.flags = PathBuilderFlags.DEFAULT;
+    }
 
     public InternalPathBuilder(PathBuilderFlags flags) {
         this.flags = flags;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
     }
 
     @Override

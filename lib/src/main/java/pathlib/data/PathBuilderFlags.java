@@ -18,4 +18,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package pathlib.data;
 
-public record PathBuilderFlags() {}
+public record PathBuilderFlags() {
+    public static final PathBuilderFlags DEFAULT = new PathBuilderFlags();
+}
