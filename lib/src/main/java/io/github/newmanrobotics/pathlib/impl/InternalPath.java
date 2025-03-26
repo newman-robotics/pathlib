@@ -21,7 +21,7 @@ package io.github.newmanrobotics.pathlib.impl;
 import java.util.List;
 
 import io.github.newmanrobotics.pathlib.Path;
-import io.github.newmanrobotics.pathlib.impl.data.InternalPathStep;
+import io.github.newmanrobotics.pathlib.data.Position;
 import io.github.newmanrobotics.pathlib.interfaces.Logger;
 import io.github.newmanrobotics.pathlib.interfaces.Pather;
 
@@ -29,9 +29,9 @@ public class InternalPath implements Path {
     private Pather pather;
     private Logger logger;
 
-    private List<InternalPathStep> steps;
+    private List<Position> steps;
 
-    InternalPath(List<InternalPathStep> steps) {
+    InternalPath(List<Position> steps) {
         this.steps = steps;
     }
 
@@ -46,7 +46,7 @@ public class InternalPath implements Path {
     }
 
     public void step() {
-        for (InternalPathStep step : this.steps) {
+        for (Position step : this.steps) {
             // Do something (not implemented yet because I'm lazy)
         }
     }
