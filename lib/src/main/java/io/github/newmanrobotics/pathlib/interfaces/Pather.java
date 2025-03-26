@@ -18,6 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package io.github.newmanrobotics.pathlib.interfaces;
 
+import javax.annotation.Nullable;
+
 import io.github.newmanrobotics.pathlib.data.Position;
 
 /**
@@ -26,9 +28,10 @@ import io.github.newmanrobotics.pathlib.data.Position;
 public interface Pather {
     /**
      * Gets the position of the pather.
-     * @return The position of the pather.
+     * @return The position of the pather, or {@code null} if no position could be found.
      * @see Position
      */
+    @Nullable
     public Position getPosition();
 
     /**

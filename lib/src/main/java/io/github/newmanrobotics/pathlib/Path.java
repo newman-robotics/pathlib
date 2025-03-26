@@ -26,7 +26,7 @@ public interface Path {
      * Instructs this {@code Path} to send commands to the target.
      * @param target The target. Will be ordered to move by this object.
      */
-    public void connect(Pather target);
+    public void connect(Pather pather);
 
     /**
      * Sets the {@code Logger} of this {@code Path} to the target.

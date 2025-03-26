@@ -40,6 +40,7 @@ public class InternalPathBuilder implements PathBuilder {
         this.flags = flags;
     }
 
+    @Override
     public void setWorld(World world) {
         this.world = world;
     }

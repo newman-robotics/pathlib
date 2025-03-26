@@ -18,21 +18,36 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package io.github.newmanrobotics.pathlib.impl;
 
+import java.util.List;
+
 import io.github.newmanrobotics.pathlib.Path;
+import io.github.newmanrobotics.pathlib.impl.data.InternalPathStep;
 import io.github.newmanrobotics.pathlib.interfaces.Logger;
 import io.github.newmanrobotics.pathlib.interfaces.Pather;
 
 public class InternalPath implements Path {
-    private Pather target;
+    private Pather pather;
     private Logger logger;
 
+    private List<InternalPathStep> steps;
+
+    InternalPath(List<InternalPathStep> steps) {
+        this.steps = steps;
+    }
+
     @Override
-    public void connect(Pather target) {
-        this.target = target;
+    public void connect(Pather pather) {
+        this.pather = pather;
     }
 
     @Override
     public void setLogger(Logger logger) {
         this.logger = logger;
+    }
+
+    public void step() {
+        for (InternalPathStep step : this.steps) {
+            // Do something (not implemented yet because I'm lazy)
+        }
     }
 }
