@@ -24,4 +24,6 @@ package io.github.newmanrobotics.pathlib.data;
  * @param y The Y-coordinate of this {@code Position}. Must be Cartesian.
  * @param heading The heading of this {@code Position}. Must be in degrees and increase towards clockwise.
  */
-public record Position(double x, double y, double heading) {}
+public record Position(double x, double y, double heading) {
+    
+}
