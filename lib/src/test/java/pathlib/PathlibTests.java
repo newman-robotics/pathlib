@@ -19,6 +19,11 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 package pathlib;
 
 import org.junit.jupiter.api.Test;
+
+import io.github.newmanrobotics.pathlib.Path;
+import io.github.newmanrobotics.pathlib.PathBuilder;
+import io.github.newmanrobotics.pathlib.data.Position;
+
 import org.junit.jupiter.api.Disabled;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,5 +33,12 @@ public class PathlibTests {
         // Done this way so that it's a bit more obvious what the test is actually doing.
         assertNotNull(new String("test string"), "This should be successful");
         assertNotNull(null, "This should fail");
+    }
+
+    @Test void testBasicPath() {
+        Path path = PathBuilder.create()
+                                .addTarget(new Position(5, 0, 0))
+                                .build();
+        path.connect(new DebugPather());
     }
 }

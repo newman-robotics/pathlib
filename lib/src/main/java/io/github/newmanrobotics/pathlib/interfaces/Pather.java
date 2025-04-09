@@ -36,13 +36,21 @@ public interface Pather {
 
     /**
      * Turns the pather towards the given heading.
-     * @param heading The heading to turn to.
+     * @param heading The heading to turn to, in degrees. Zero is the direction in which the {@code Pather} was facing
+     * when the path was instantiated.
      */
     public void turnTo(double heading);
 
     /**
      * Moves the pather forwards for the given distance.
-     * @param distance The distance to move in.
+     * @param distance The distance to move in. A negative distance results in undefined behaviour,
+     * although ideally the pather should stop or issue a warning and do nothing.
      */
     public void forwards(double distance);
+
+    /**
+     * Determines whether the pather is doing something and incapable of receiving new instructions.
+     * @return See above.
+     */
+    public boolean isWorking();
 }

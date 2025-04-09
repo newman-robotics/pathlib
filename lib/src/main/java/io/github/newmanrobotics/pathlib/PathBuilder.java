@@ -40,8 +40,9 @@ public interface PathBuilder {
     /**
      * Adds the given target position.
      * @param target The target position to add. The {@code Pather} will be instructed to move to the coordinates and then rotate to the heading.
+     * @return This {@code PathBuilder}, for chaining.
      */
-    public void addTarget(Position target);
+    public PathBuilder addTarget(Position target);
 
     /**
      * Builds the {@code Path}.

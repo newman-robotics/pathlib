@@ -20,16 +20,20 @@ package io.github.newmanrobotics.pathlib.impl;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import io.github.newmanrobotics.pathlib.Path;
 import io.github.newmanrobotics.pathlib.data.Position;
 import io.github.newmanrobotics.pathlib.interfaces.Logger;
 import io.github.newmanrobotics.pathlib.interfaces.Pather;
 
 public class InternalPath implements Path {
-    private Pather pather;
-    private Logger logger;
+    private Pather pather = null;
+    @Nullable
+    private Logger logger = null;
 
     private List<Position> steps;
+    private int stepIndex = 0;
 
     InternalPath(List<Position> steps) {
         this.steps = steps;
@@ -46,8 +50,15 @@ public class InternalPath implements Path {
     }
 
     public void step() {
-        for (Position step : this.steps) {
-            // Do something (not implemented yet because I'm lazy)
+        if (this.pather == null) {
+            if (this.logger != null) this.logger.warn("Tried to step path, but did not attach device!");
+            return;
         }
+        if (this.pather.isWorking()) return;
+
+        if (this.stepIndex == 0)
+            this.pather.turnTo(Math.atan2(this.steps.get(0).y(), this.steps.get(0).x()));
+        else
+            this.pather.turnTo(Math.atan2(this.steps.get(this.stepIndex).y(), this.steps.get(this.stepIndex).x()));
     }
 }

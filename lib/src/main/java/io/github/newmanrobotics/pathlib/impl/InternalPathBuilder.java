@@ -46,8 +46,9 @@ public class InternalPathBuilder implements PathBuilder {
     }
 
     @Override
-    public void addTarget(Position target) {
+    public PathBuilder addTarget(Position target) {
         this.targets.add(target);
+        return this;
     }
 
     @Override

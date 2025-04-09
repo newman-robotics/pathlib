@@ -18,6 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package io.github.newmanrobotics.pathlib.data;
 
+import javax.annotation.Nullable;
+
 /**
  * Stores a position.
  * @param x The X-coordinate of this {@code Position}. Must be Cartesian.
@@ -25,5 +27,8 @@ package io.github.newmanrobotics.pathlib.data;
  * @param heading The heading of this {@code Position}. Must be in degrees and increase towards clockwise.
  */
 public record Position(double x, double y, double heading) {
-    
+    public double getTargetHeading(@Nullable Position lastPos) {
+        if (lastPos == null) return Math.atan2(this.y, this.x);
+        return Math.atan2(this.y - lastPos.y, this.x - lastPos.x);
+    }
 }
