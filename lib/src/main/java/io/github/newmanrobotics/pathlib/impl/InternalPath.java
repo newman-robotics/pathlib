@@ -49,6 +49,7 @@ public class InternalPath implements Path {
         this.logger = logger;
     }
 
+    @Override
     public void step() {
         if (this.pather == null) {
             if (this.logger != null) this.logger.warn("Tried to step path, but did not attach device!");
@@ -56,9 +57,28 @@ public class InternalPath implements Path {
         }
         if (this.pather.isWorking()) return;
 
-        if (this.stepIndex == 0)
-            this.pather.turnTo(Math.atan2(this.steps.get(0).y(), this.steps.get(0).x()));
-        else
-            this.pather.turnTo(Math.atan2(this.steps.get(this.stepIndex).y(), this.steps.get(this.stepIndex).x()));
+        Position target = this.steps.get(this.stepIndex);
+        Position currentPosition = this.pather.getPosition();
+        // The user didn't provide their position, so we have to assume that they haven't moved.
+        if (currentPosition == null) {
+            // This is the first step - the user should be at the origin.
+            if (this.stepIndex == 0)
+                currentPosition = new Position(0, 0, 0);
+            // This is a step after the first one - the user should be at wherever we just told them to be at.
+            else
+                currentPosition = this.steps.get(this.stepIndex - 1);
+        }
+        
+        double dx = target.x() - currentPosition.x();
+        double dy = target.y() - currentPosition.y();
+        double distance = Math.sqrt(dx * dx + dy * dy);
+        
+        this.pather.turnTo(Math.atan2(dy, dx));
+        this.pather.forwards(distance);
+        // Double.MAX_VALUE means that we should skip this instruction.
+        if (target.heading() != Double.MAX_VALUE)
+            this.pather.turnTo(target.heading());
+
+        this.stepIndex++;
     }
 }

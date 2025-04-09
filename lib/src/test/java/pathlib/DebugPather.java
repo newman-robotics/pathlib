@@ -18,6 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package pathlib;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.Optional;
 
 import javax.annotation.Nullable;
@@ -39,13 +41,14 @@ public class DebugPather implements Pather {
     @Override
     @Nullable
     public Position getPosition() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPosition'");
+        return this.position.toImmutable();
     }
 
     @Override
     public void turnTo(double heading) {
         this.position.setHeading(heading);
+        if (this.logger.isPresent())
+            this.logger.get().info(String.format("Pather turned to %d radians"));
     }
 
     @Override
@@ -59,5 +62,11 @@ public class DebugPather implements Pather {
     public boolean isWorking() {
         // The basic debug pather implementation only logs 
         return true;
+    }
+
+    public void assertPos(Position pos) {
+        assertEquals(pos.x(), this.position.x());
+        assertEquals(pos.y(), this.position.y());
+        assertEquals(pos.heading(), this.position.heading());
     }
 }

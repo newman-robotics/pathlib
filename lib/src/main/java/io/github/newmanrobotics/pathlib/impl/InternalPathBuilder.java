@@ -53,7 +53,6 @@ public class InternalPathBuilder implements PathBuilder {
 
     @Override
     public Path build() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'build'");
+        return new InternalPath(this.targets);
     }
 }

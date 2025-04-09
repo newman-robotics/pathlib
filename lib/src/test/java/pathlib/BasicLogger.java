@@ -1,5 +1,5 @@
 /*
-Path.java
+BasicLogger.java
 Copyright (C) 2025 Owen Kelley
 
 This program is free software: you can redistribute it and/or modify
@@ -16,26 +16,26 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-package io.github.newmanrobotics.pathlib;
+package pathlib;
 
 import io.github.newmanrobotics.pathlib.interfaces.Logger;
-import io.github.newmanrobotics.pathlib.interfaces.Pather;
 
-public interface Path {
-    /**
-     * Instructs this {@code Path} to send commands to the target.
-     * @param target The target. Will be ordered to move by this object.
-     */
-    public void connect(Pather pather);
+/**
+ * An extremely basic logger.
+ */
+public class BasicLogger implements Logger {
+    @Override
+    public void info(String message) {
+        System.out.println("[INFO] " + message);
+    }
 
-    /**
-     * Sets the {@code Logger} of this {@code Path} to the target.
-     * @param logger The logger.
-     */
-    public void setLogger(Logger logger);
+    @Override
+    public void warn(String message) {
+        System.out.println("[WARN] " + message);
+    }
 
-    /**
-     * Runs the next execution step of this {@code Path}.
-     */
-    public void step();
+    @Override
+    public void error(String message) {
+        System.out.println("[ERROR] " + message);
+    }
 }

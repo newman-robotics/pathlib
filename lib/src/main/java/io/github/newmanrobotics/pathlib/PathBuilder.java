@@ -40,6 +40,7 @@ public interface PathBuilder {
     /**
      * Adds the given target position.
      * @param target The target position to add. The {@code Pather} will be instructed to move to the coordinates and then rotate to the heading.
+     * If {@code target.heading} is {@code Double.MAX_VALUE}, the {@code Pather} will not be instructed to turn after moving.
      * @return This {@code PathBuilder}, for chaining.
      */
     public PathBuilder addTarget(Position target);

@@ -61,8 +61,8 @@ public class MutablePosition {
      * @param distance The distancce to move this position forwards. Can be negative, in which case the position translates backwards instead.
      */
     public void translateForwards(double distance) {
-        double xNormal = Math.sin(this.heading);
-        double yNormal = Math.cos(this.heading);
+        double xNormal = Math.cos(this.heading);
+        double yNormal = Math.sin(this.heading);
         this.x += xNormal * distance;
         this.y += yNormal * distance;
     }

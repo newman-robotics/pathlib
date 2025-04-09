@@ -36,9 +36,18 @@ public class PathlibTests {
     }
 
     @Test void testBasicPath() {
+        BasicLogger logger = new BasicLogger();
+        DebugPather pather = new DebugPather(logger);
+
         Path path = PathBuilder.create()
                                 .addTarget(new Position(5, 0, 0))
                                 .build();
-        path.connect(new DebugPather());
+        path.connect(pather);
+        path.setLogger(logger);
+
+        path.step();
+
+        pather.getPosition();
+        pather.assertPos(new Position(5, 0, 0));
     }
 }
