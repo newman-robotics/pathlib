@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import io.github.newmanrobotics.pathlib.Path;
 import io.github.newmanrobotics.pathlib.PathBuilder;
 import io.github.newmanrobotics.pathlib.data.Position;
+import io.github.newmanrobotics.pathlib.impl.HermiteSpline;
 
 import org.junit.jupiter.api.Disabled;
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,13 +42,29 @@ public class PathlibTests {
 
         Path path = PathBuilder.create()
                                 .addTarget(new Position(5, 0, 0))
+                                .addTarget(new Position(5, 3, 0))
                                 .build();
         path.connect(pather);
         path.setLogger(logger);
 
         path.step();
-
-        pather.getPosition();
         pather.assertPos(new Position(5, 0, 0));
+
+        path.step();
+        pather.assertPos(new Position(5, 3, Double.NaN));
+    }
+
+    @Test void testSpline() {
+        HermiteSpline spline = new HermiteSpline.Builder()
+                                .addPoint(0, 0)
+                                .addPoint(1, 0)
+                                .addPoint(0, 0)
+                                .build();
+
+        assertEquals(0, spline.sample(0));
+        assertEquals(0.5, spline.sample(0.5));
+        assertEquals(1, spline.sample(1));
+        assertEquals(0.5, spline.sample(1.5));
+        assertEquals(0, spline.sample(2));
     }
 }

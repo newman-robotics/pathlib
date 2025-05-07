@@ -25,19 +25,31 @@ import com.google.common.annotations.VisibleForTesting;
  */
 public record BoundingBox(double fromX, double fromY, double toX, double toY) {
     /**
+     * Constructs a {@code BoundingBox} from the positions.
+     * @param from The from position. Heading is irrelevant.
+     * @param to The to position. Heading is irrelevant.
+     */
+    public BoundingBox(Position from, Position to) {
+        this(from.x(), from.y(), to.x(), to.y());
+    }
+
+    /**
      * Determines if the point is within this box.
      * @param x The X-coordinate.
      * @param y The Y-coordinate.
      * @return Whether the point is within this box.
+     * @implNote If the point is on an edge, it is counted as
+     * within the box for the purposes of this function.
      */
     public boolean isWithin(double x, double y) {
-        return this.fromX < x && x < this.toX && this.fromY < y && y < this.toY;
+        return this.fromX <= x && x <= this.toX && this.fromY <= y && y <= this.toY;
     }
 
     /**
      * Validates the {@code BoundingBox}.<p>
      * {@code assertTrue(someBoundingBox.validate(), "Invalid bounding box!")}<p>
      * <b>DO NOT USE OUTSIDE OF TEST CODE!</b>
+     * (Well, actually it's pretty fast, but still don't.)
      * @return Whether the {@code BoundingBox} can be used.
      */
     @VisibleForTesting

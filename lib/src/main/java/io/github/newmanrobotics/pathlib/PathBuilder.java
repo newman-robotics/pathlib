@@ -23,8 +23,12 @@ import io.github.newmanrobotics.pathlib.data.Position;
 import io.github.newmanrobotics.pathlib.impl.InternalPathBuilder;
 
 public interface PathBuilder {
+    /**
+     * Creates a new {@code PathBuilder} using {@code PathBuilderFlags.DEFAULT}.
+     * @return A new {@code PathBuilder}.
+     */
     public static PathBuilder create() {
-        return new InternalPathBuilder();
+        return new InternalPathBuilder(PathBuilderFlags.DEFAULT);
     }
 
     public static PathBuilder create(PathBuilderFlags flags) {

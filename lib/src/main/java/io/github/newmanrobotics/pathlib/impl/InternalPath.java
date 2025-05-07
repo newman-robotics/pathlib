@@ -52,10 +52,13 @@ public class InternalPath implements Path {
     @Override
     public void step() {
         if (this.pather == null) {
-            if (this.logger != null) this.logger.warn("Tried to step path, but did not attach device!");
+            if (this.logger != null) this.logger.warn("Tried to step path, but did not attach pather!");
             return;
         }
-        if (this.pather.isWorking()) return;
+        if (this.pather.isWorking()) {
+            if (this.logger != null) this.logger.warn("Tried to instruct an already-working pather!");
+            return;
+        }
 
         Position target = this.steps.get(this.stepIndex);
         Position currentPosition = this.pather.getPosition();

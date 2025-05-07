@@ -18,12 +18,51 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package io.github.newmanrobotics.pathlib;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import io.github.newmanrobotics.pathlib.data.BoundingBox;
+import io.github.newmanrobotics.pathlib.impl.InternalWorld;
 
 public interface World {
+    /**
+     * Creates a new {@code World} instance.
+     * @return A fresh {@code World} instance.
+     * 
+     * @implNote This method just calls {@code new InternalWorld()} by default.
+     * However, it's better to use this method instead of that one because
+     * of convention.
+     */
+    public static World create() {
+        return new InternalWorld();
+    }
+
+    /**
+     * Creates a new {@code World} instance from the given objects.
+     * @return A fresh {@code World} instance including the given objects.
+     * 
+     * @implNote This method just calls {@code new InternalWorld(objects)} by default.
+     * However, it's better to use this method instead of that one because
+     * of convention.
+     */
+    public static World create(List<BoundingBox> objects) {
+        return new InternalWorld(objects);
+    }
+    
     /**
      * Adds an object to the world. Paths using this world will attempt to avoid this object.
      * @param box 
      */
     public void addObject(BoundingBox box);
+
+    public List<BoundingBox> getObjects();
+    public Stream<BoundingBox> streamObjects();
+
+    /**
+     * Pads every {@code BoundingBox} within this {@code World} by {@code size}.
+     * @param size The size to pad by. Essentially, all points are moved away from the
+     * centre of the box by {@code size} units in each direction.
+     * @implSpec This should not be an in-place operation.
+     */
+    public World pad(double size);
 }

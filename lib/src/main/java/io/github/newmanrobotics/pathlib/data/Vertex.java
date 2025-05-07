@@ -1,5 +1,5 @@
 /*
-Position.java
+Vertex.java
 Copyright (C) 2025 Owen Kelley
 
 This program is free software: you can redistribute it and/or modify
@@ -18,18 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package io.github.newmanrobotics.pathlib.data;
 
-import javax.annotation.Nullable;
-
 /**
- * Stores a position with a heading.
- * Prefer {@code Vertex} to {@code Position} when a heading does not need to be stored.
- * @param x The X-coordinate of this {@code Position}. Must be Cartesian.
- * @param y The Y-coordinate of this {@code Position}. Must be Cartesian.
- * @param heading The heading of this {@code Position}. Must be in degrees and increase towards clockwise.
+ * A {@code Vertex} is essentially the same as a {@code Position},
+ * but without the heading.
  */
-public record Position(double x, double y, double heading) {
-    public double getTargetHeading(@Nullable Position lastPos) {
-        if (lastPos == null) return Math.atan2(this.y, this.x);
-        return Math.atan2(this.y - lastPos.y, this.x - lastPos.x);
-    }
-}
+public record Vertex(double x, double y) {}

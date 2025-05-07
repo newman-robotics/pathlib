@@ -48,25 +48,30 @@ public class DebugPather implements Pather {
     public void turnTo(double heading) {
         this.position.setHeading(heading);
         if (this.logger.isPresent())
-            this.logger.get().info(String.format("Pather turned to %d radians"));
+            this.logger.get().info(String.format("Pather turned to %f radians", heading));
     }
 
     @Override
     public void forwards(double distance) {
         this.position.translateForwards(distance);
         if (this.logger.isPresent())
-            this.logger.get().info(String.format("Pather moved %d units forwards to new position %d, %d", distance, this.position.x(), this.position.y()));
+            this.logger.get().info(String.format("Pather moved %f units forwards to new position %f, %f", distance, this.position.x(), this.position.y()));
     }
 
     @Override
     public boolean isWorking() {
         // The basic debug pather implementation only logs 
-        return true;
+        return false;
     }
 
+    /**
+     * Asserts that the pather's position matches the provided position using JUnit's assertion API.
+     * @param pos The position. If {@code heading} is NaN, it is ignored.
+     */
     public void assertPos(Position pos) {
         assertEquals(pos.x(), this.position.x());
         assertEquals(pos.y(), this.position.y());
+        if (Double.isNaN(pos.heading())) return;
         assertEquals(pos.heading(), this.position.heading());
     }
 }

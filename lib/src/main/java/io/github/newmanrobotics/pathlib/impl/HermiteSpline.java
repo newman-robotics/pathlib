@@ -50,6 +50,10 @@ public class HermiteSpline {
     public double sample(double time) {
         assert time >= 0 && time <= this.getMaxTime();
 
+        if (time == this.getMaxTime()) {
+            return this.pieces.get(this.pieces.size() - 1).sample(1.);
+        }
+        
         double idx = Math.floor(time);
         return this.pieces.get((int)idx).sample(time - idx);
     }
@@ -68,7 +72,7 @@ public class HermiteSpline {
      * 
      * @implNote A cubic that only samples in one dimension.
      */
-    private class Piece {
+    private static class Piece {
         private double coeff0, coeff1, coeff2, coeff3;
 
         public Piece(double pos0, double pos1, double tan0, double tan1) {
@@ -91,7 +95,7 @@ public class HermiteSpline {
     /**
      * Hermite spline builder.
      */
-    public class Builder {
+    public static class Builder {
         private List<Double> positions;
         private List<Double> derivatives;
 
@@ -104,10 +108,12 @@ public class HermiteSpline {
          * Adds a point to the spline.
          * @param position The position of the point.
          * @param derivative The derivative, slope, or tangent of the point.
+         * @return This instance (for chaining).
          */
-        public void addPoint(double position, double derivative) {
+        public HermiteSpline.Builder addPoint(double position, double derivative) {
             this.positions.add(position);
             this.derivatives.add(derivative);
+            return this;
         }
 
         /**
